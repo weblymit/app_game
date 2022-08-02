@@ -2,8 +2,19 @@
 <?php
 $title = "Accueil"; // title for current page
 include("partials/_header.php"); // include header
+include("helpers/functions.php"); // include function
 // inclure PDO pour la connexion a la BDD dans mon script
-require_once("helpers/pdo.php")
+require_once("helpers/pdo.php");
+
+//1-  Query to get all games
+$sql = "SELECT * FROM jeux";
+//2- Prépare la query (preformatter)
+$query = $pdo->prepare($sql);
+//3 - Execute ma requette
+$query->execute();
+//4 - stock my query in variable
+$games = $query->fetchAll();
+// debug_array($games)
 
 ?>
 <!-- main-content -->
@@ -29,20 +40,26 @@ require_once("helpers/pdo.php")
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
-        <tr>
-          <th>1</th>
-          <td>Mario</td>
-          <td>Plateforme</td>
-          <td>Switch</td>
-          <td>33.99</td>
-          <td>3</td>
-          <td>
-            <a href="show.php">
-              <img src="img/loupe.png" alt="loupe" class="w-4">
-            </a>
-          </td>
-        </tr>
+        <?php
+        if (count($games) == 0) {
+          echo "<tr><td class=text-center>Pas de jeux disponible actuellement</td></tr>";
+        } else { ?>
+          <?php foreach ($games as $game) : ?>
+            <tr>
+              <th><?= $game['id'] ?></th>
+              <td><?= $game['name'] ?></td>
+              <td><?= $game['genre'] ?></td>
+              <td><?= $game['plateforms'] ?></td>
+              <td><?= $game['price'] ?></td>
+              <td><?= $game['PEGI'] ?></td>
+              <td>
+                <a href="show.php">
+                  <img src="img/loupe.png" alt="loupe" class="w-4">
+                </a>
+              </td>
+            </tr>
+          <?php endforeach ?>
+        <?php } ?>
       </tbody>
     </table>
   </div>

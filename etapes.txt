@@ -6,3 +6,4 @@
 6- Je crée mon projet PHP & publie sur GITHUB
 7- Je code mon templates
 8- Je me connecte à ma BDD => PDO
+9- On recupere les donnés de la BDD
