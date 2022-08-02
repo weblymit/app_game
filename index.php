@@ -1,7 +1,10 @@
 <!-- header -->
 <?php
 $title = "Accueil"; // title for current page
-include("partials/_header.php") // include header
+include("partials/_header.php"); // include header
+// inclure PDO pour la connexion a la BDD dans mon script
+require_once("helpers/pdo.php")
+
 ?>
 <!-- main-content -->
 <div class="pt-16 wrap__content">
