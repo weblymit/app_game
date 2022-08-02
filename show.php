@@ -45,6 +45,7 @@ if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
       <p>Prix <?= $game["price"] ?><span class="font-bold text-blue-500"> €</span></p>
       <p>Note: <?= $game["note"] ?>/10</p>
     </div>
+    <a href="delete.php?id=<?= $game["id"] ?>&name=<?= $game["name"] ?>" class="btn btn-error text-white">Supprimer le jeux</a>
   </div>
 </div>
 <!-- footer -->

@@ -26,15 +26,19 @@ $games = $query->fetchAll();
     <p>L'app qui repertorie vos jeux</p>
 
     <?php
-    // je verifie que session error est vide ou pas
+    // je verifie que session error ou succes est vide ou pas
     if ($_SESSION["error"]) { ?>
       <div class="bg-red-400 text-white py-6">
-        <?= $_SESSION["error"] ?>
+        <?= $_SESSION["error"] ?>;
       </div>
-    <?php } 
-    
+    <?php } elseif ($_SESSION["success"]) { ?>
+      <div class="bg-green-400 text-white py-6">
+        <?= $_SESSION["success"] ?>;
+      </div>
+    <?php }
     // je vide ma variable $_SESSION["error"] pour qu'il n'affiche pas de message en creant un array vide
     $_SESSION["error"] = [];
+    $_SESSION["success"] = [];
     ?>
 
   </div>
